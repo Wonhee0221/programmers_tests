@@ -1,1 +1,1 @@
-print('sf')
+print(1//10)
