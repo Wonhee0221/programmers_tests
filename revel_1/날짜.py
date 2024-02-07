@@ -1,5 +1,6 @@
 def solution(today, terms, privacies):
-    year, month, day = int(today[0:4]),int(today[5:7]),int(today[8:])
+    year, month, day = map(int, today.split("."))
+
     answer = []
     month_dict = {}
     for term in terms:
@@ -12,9 +13,11 @@ def solution(today, terms, privacies):
 
         t_month = t_month + month_dict[case]
 
-        if t_month > 12:
-            t_year += 1
-            t_month -= 12
+        #조건의 유효기간이 100달까지 있기 때문에 그 기간동안 추가를 해줘야함. 
+        while t_month > 12:
+                t_year += 1
+                t_month -= 12
+
         if t_year > year :
             continue        
         elif t_year == year :
@@ -23,7 +26,7 @@ def solution(today, terms, privacies):
             elif t_month == month :
                 if t_day > day :
                     continue 
-        answer.append(exam)
+        answer.append(exam+1)
                 
     return answer
 
