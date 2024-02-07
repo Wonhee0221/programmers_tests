@@ -5,4 +5,7 @@ def solution(array, height):
             answer +=1
     return answer
 
-print(solution(	[149, 180, 192, 170], 167))
+print(solution(	[149, 180, 192, 170], 167)) 
+
+
+append
