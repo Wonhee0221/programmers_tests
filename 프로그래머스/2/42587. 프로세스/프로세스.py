@@ -1,22 +1,15 @@
 from collections import deque
 
 def solution(priorities, location):
-    x = [i for i in range(len(priorities))]
-    t= []
-    for i in zip(priorities,x):
-        t.append(i)
-    bin_queue = deque(t)
-    stack = []
+    x =  [(i,p) for i,p in enumerate(priorities)]
+    bin_queue = deque(x)
     answer = 0
     while bin_queue:
-        answer+=1
-        max_x = max(priorities)
-        priorities.remove(max_x)
-        loc = bin_queue.popleft()
-        if loc[0] == location:
-            return 1
-        while loc[0] != max_x:
-            bin_queue.append(loc)
-            loc = bin_queue.popleft()
-        if loc[1] == location:
-            return answer
+        cur = bin_queue.popleft()
+        if any(cur[1] < q[1] for q in bin_queue):
+            bin_queue.append(cur)
+        else:
+            answer += 1
+            if cur[0] == location:
+                return answer
+        
