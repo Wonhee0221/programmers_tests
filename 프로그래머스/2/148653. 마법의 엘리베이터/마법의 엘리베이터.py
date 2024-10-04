@@ -1,36 +1,15 @@
-# def solution(storey):
-#     stack = [int(x) for x in str(storey)]
-#     answer = 0
-
-#     for i in range(len(stack)):
-#         x = stack.pop()
-#         if x > 5:
-#             answer += (10 - x)
-#             if stack:
-#                 stack[-1] += 1
-#         else:
-#             answer += x
-
-#     return answer
-
-
 def solution(storey):
     answer = 0
-
     while storey:
-        remainder = storey % 10
-        # 6 ~ 9
-        if remainder > 5:
-            answer += (10 - remainder)
+        na = storey % 10
+        if na > 5:
+            answer += (10 - na)
             storey += 10
-        # 0 ~ 4
-        elif remainder < 5:
-            answer += remainder
-        # 5
+        elif na < 5:
+            answer += na
         else:
-            if (storey // 10) % 10 > 4:
+            if (storey//10) % 10 > 4:
                 storey += 10
-            answer += remainder
-        storey //= 10
-
+            answer += 5
+        storey = storey // 10
     return answer
